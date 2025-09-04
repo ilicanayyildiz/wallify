@@ -103,3 +103,100 @@ Please file feedback and issues over on the [Supabase GitHub org](https://github
 - [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
 - [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
 - [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+
+# Wallify - Premium Wallpaper Store
+
+A modern wallpaper store built with Next.js, Supabase, and Tailwind CSS.
+
+## 🚀 Quick Start
+
+1. **Clone the repository**
+2. **Install dependencies**: `npm install`
+3. **Set up environment variables** (see below)
+4. **Run the database migration** (see below)
+5. **Start the development server**: `npm run dev`
+
+## 🔧 Environment Variables
+
+Create a `.env.local` file with:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+## 🗄️ Database Migration
+
+**IMPORTANT**: Before running the app, you need to update your database schema.
+
+### Option 1: Run Migration Script (Recommended)
+
+1. Go to your Supabase dashboard
+2. Navigate to SQL Editor
+3. Copy and paste the contents of `database-migration.sql`
+4. Run the script
+
+### Option 2: Manual Update
+
+If you prefer to update manually:
+
+```sql
+-- Add credits_cost column
+ALTER TABLE products ADD COLUMN credits_cost INTEGER DEFAULT 1;
+
+-- Update existing products
+UPDATE products SET credits_cost = CASE 
+  WHEN price_cents > 0 THEN price_cents / 100
+  ELSE 1
+END;
+
+-- Make credits_cost NOT NULL
+ALTER TABLE products ALTER COLUMN credits_cost SET NOT NULL;
+
+-- Add updated_at column
+ALTER TABLE products ADD COLUMN updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW();
+```
+
+## 🎯 Features
+
+- **Credits System**: 1 Euro = 100 Credits
+- **Product Management**: Add, edit, delete wallpapers
+- **User Authentication**: Secure login/signup
+- **Purchase System**: Buy wallpapers with credits
+- **Download Management**: Access purchased wallpapers
+- **Admin Panel**: Manage products and users
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 15, React, TypeScript
+- **Styling**: Tailwind CSS
+- **Backend**: Supabase (PostgreSQL, Auth, Storage)
+- **Icons**: Lucide React
+- **Deployment**: Vercel (recommended)
+
+## 📱 Pages
+
+- `/` - Home page
+- `/protected` - Browse wallpapers
+- `/product/[id]` - Product detail
+- `/pricing` - Credit packages
+- `/dashboard` - User profile
+- `/admin` - Admin panel
+- `/auth/*` - Authentication pages
+
+## 🔒 Security
+
+- Row Level Security (RLS) enabled
+- User authentication required for protected routes
+- Admin-only access to admin panel
+
+## 🚀 Deployment
+
+1. Push to GitHub
+2. Connect to Vercel
+3. Set environment variables
+4. Deploy!
+
+## 📞 Support
+
+For issues or questions, please check the database migration first!
