@@ -174,7 +174,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               </div>
 
               {/* Pricing and Purchase */}
-              <div className="bg-neutral-900/50 rounded-2xl border border-neutral-800 p-8 shadow-xl">
+              <div className="bg-neutral-900/50 rounded-2xl border border-neutral-800 p-4 md:p-8 shadow-xl">
                 <div className="text-center mb-8">
                   <div className="flex items-center justify-center gap-3 mb-4">
                     <CreditCard className="w-8 h-8 text-blue-400" />
