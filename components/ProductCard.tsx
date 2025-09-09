@@ -24,6 +24,8 @@ export default function ProductCard({ id, title, cover_url, price }: ProductCard
               alt={title}
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-500"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-neutral-500 bg-gradient-to-br from-neutral-800 to-neutral-900">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Image as ImageIcon } from 'lucide-react'
 import Header from '@/components/Header'
 import { createClient } from '@/lib/supabase/client'
@@ -159,10 +160,13 @@ export default function CategoriesPage() {
                   {/* Category Image */}
                   <div className="aspect-[4/3] overflow-hidden">
                     {category.image ? (
-                      <img 
+                      <Image 
                         src={category.image} 
                         alt={category.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 dark:bg-neutral-700 flex items-center justify-center">
