@@ -4,12 +4,11 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import ThemeSwitcher from './ThemeSwitcher'
-import LanguageSwitcher from './LanguageSwitcher'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { User, CreditCard, LogOut, Moon } from 'lucide-react'
+import { User, CreditCard, LogOut } from 'lucide-react'
 
 export default function Header() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const { t } = useLanguage()
 

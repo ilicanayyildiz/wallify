@@ -71,7 +71,7 @@ export default function PurchaseErrorPage() {
             <div>
               <p className="text-blue-300 font-medium mb-1">Bilgi</p>
               <p className="text-blue-200 text-sm leading-relaxed">
-                Zaten satın aldığınız ürünleri Dashboard'dan indirebilirsiniz. 
+                Zaten satın aldığınız ürünleri Dashboard&apos;dan indirebilirsiniz. 
                 Yeni ürünler için mağazaya göz atın!
               </p>
             </div>

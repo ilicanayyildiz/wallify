@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Download, Eye, Star } from 'lucide-react'
 
 type ProductCardProps = {
@@ -9,7 +10,7 @@ type ProductCardProps = {
   price: number
 }
 
-export default function ProductCard({ id, title, slug, cover_url, price }: ProductCardProps) {
+export default function ProductCard({ id, title, cover_url, price }: ProductCardProps) {
   return (
     <Link
       href={`/product/${id}`}
@@ -18,10 +19,11 @@ export default function ProductCard({ id, title, slug, cover_url, price }: Produ
       <div className="rounded-2xl border border-neutral-800 overflow-hidden hover:border-neutral-600 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 bg-neutral-900/50">
         <div className="aspect-[4/3] bg-neutral-900 relative overflow-hidden">
           {cover_url ? (
-            <img
+            <Image
               src={cover_url}
               alt={title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-neutral-500 bg-gradient-to-br from-neutral-800 to-neutral-900">

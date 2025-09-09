@@ -66,7 +66,7 @@ export default function PurchaseError({
         {/* Info Box */}
         <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
           <p className="text-sm text-blue-300 text-center">
-            💡 Zaten satın aldığınız ürünleri Dashboard'dan indirebilirsiniz
+            💡 Zaten satın aldığınız ürünleri Dashboard&apos;dan indirebilirsiniz
           </p>
         </div>
       </div>
