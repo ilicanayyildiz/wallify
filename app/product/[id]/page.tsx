@@ -202,45 +202,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                           })
                           
                           if (checkoutResponse.ok) {
-                            // Then download the file using the download API
-                            const downloadResponse = await fetch(`/api/download?product_id=${product.id}`)
+                            // Show success message
+                            alert(language === 'tr' 
+                              ? `${product.name} başarıyla satın alındı! Profilinizden indirebilirsiniz.` 
+                              : `Successfully purchased ${product.name}! You can download it from your profile.`
+                            )
                             
-                            if (downloadResponse.ok) {
-                              // Get the filename from Content-Disposition header
-                              const contentDisposition = downloadResponse.headers.get('Content-Disposition')
-                              let filename = `${product.name}.jpg` // default fallback
-                              if (contentDisposition) {
-                                const filenameMatch = contentDisposition.match(/filename="(.+)"/)
-                                if (filenameMatch) {
-                                  filename = filenameMatch[1]
-                                }
-                              }
-
-                              // Create download link
-                              const blob = await downloadResponse.blob()
-                              const url = window.URL.createObjectURL(blob)
-                              const link = document.createElement('a')
-                              link.href = url
-                              link.download = filename
-                              document.body.appendChild(link)
-                              link.click()
-                              document.body.removeChild(link)
-                              window.URL.revokeObjectURL(url)
-                              
-                              // Show success message
-                              alert(language === 'tr' 
-                                ? `${product.name} başarıyla indirildi!` 
-                                : `Successfully downloaded ${product.name}!`
-                              )
-                              
-                              // Refresh the page to update credits
-                              window.location.reload()
-                            } else {
-                              alert(language === 'tr' 
-                                ? 'İndirme başarısız. Lütfen tekrar deneyin.' 
-                                : 'Download failed. Please try again.'
-                              )
-                            }
+                            // Redirect to dashboard
+                            window.location.href = '/dashboard'
                           } else {
                             const error = await checkoutResponse.json()
                             alert(language === 'tr' 
@@ -249,16 +218,16 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                             )
                           }
                         } catch (error) {
-                          console.error('Download error:', error)
+                          console.error('Purchase error:', error)
                           alert(language === 'tr' 
-                            ? 'İndirme başarısız. Lütfen tekrar deneyin.' 
-                            : 'Download failed. Please try again.'
+                            ? 'Satın alma başarısız. Lütfen tekrar deneyin.' 
+                            : 'Purchase failed. Please try again.'
                           )
                         }
                       }}
                       className="w-full px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl transition-all transform hover:scale-105 text-lg"
                     >
-                      {language === 'tr' ? 'Şimdi İndir' : 'Download Now'} - {product.credits_cost} {language === 'tr' ? 'kredi' : 'credits'}
+                      {language === 'tr' ? 'Satın Al' : 'Purchase'} - {product.credits_cost} {language === 'tr' ? 'kredi' : 'credits'}
                     </button>
                   ) : (
                     <button 
@@ -279,7 +248,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
                 <div className="mt-8 p-6 bg-neutral-800/50 rounded-xl border border-neutral-700">
                   <h3 className="text-lg font-semibold text-white mb-3 text-center">
-                    {language === 'tr' ? 'Ne alırsınız:' : 'What you get:'}
+                    {language === 'tr' ? 'Satın aldığınızda:' : 'When you purchase:'}
                   </h3>
                   <ul className="space-y-2 text-sm text-neutral-300">
                     <li className="flex items-center gap-2">
@@ -288,7 +257,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-green-400">✓</span>
-                      {language === 'tr' ? 'Sınırsız indirme' : 'Unlimited downloads'}
+                      {language === 'tr' ? 'Sınırsız indirme hakkı' : 'Unlimited download rights'}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-green-400">✓</span>
@@ -296,7 +265,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-green-400">✓</span>
-                      {language === 'tr' ? 'Profilinizden sonsuza kadar erişim' : 'Access from your profile forever'}
+                      {language === 'tr' ? 'Profilinizden istediğiniz zaman indirme' : 'Download anytime from your profile'}
                     </li>
                   </ul>
                 </div>
