@@ -123,22 +123,12 @@ export default function Footer() {
                 Payment Methods -
               </span>
               <div className="flex items-center gap-2">
-                {/* Visa */}
-                <div className="w-12 h-8 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">VISA</span>
-                </div>
-                {/* Mastercard */}
-                <div className="w-12 h-8 bg-red-500 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">MC</span>
-                </div>
-                {/* Visa Secure */}
-                <div className="w-12 h-8 bg-blue-700 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">VS</span>
-                </div>
-                {/* ID Check */}
-                <div className="w-12 h-8 bg-orange-500 rounded flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">ID</span>
-                </div>
+                {/* Payment Methods Image */}
+                <img 
+                  src="/images/payment-logos.png" 
+                  alt="Payment Methods - Visa, Mastercard, Visa Secure, ID Check" 
+                  className="h-8 w-auto"
+                />
               </div>
             </div>
           </div>

@@ -92,7 +92,6 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-lg text-black dark:text-white mb-1">Office</h3>
                     <p className="text-neutral-700 dark:text-neutral-300">Hamilton House, Mabledon Place</p>
-
                     <p className="text-neutral-700 dark:text-neutral-300">London, England, WC1H 9BB</p>
                   </div>
                 </div>
